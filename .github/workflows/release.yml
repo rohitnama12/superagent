@@ -3,6 +3,8 @@ name: Build and Release
 on:
   release:
     types: [published]
+permissions:
+  contents: write
 
 jobs:
   build:
