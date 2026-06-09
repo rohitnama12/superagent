@@ -1,2 +1,0 @@
-[console_scripts]
-superagent = superagent.main:main
