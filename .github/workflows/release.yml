@@ -1,0 +1,51 @@
+name: Build and Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    name: Build on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            artifact_name: superagent-linux-x64
+            asset_name: superagent-linux-x64
+          - os: windows-latest
+            artifact_name: superagent-windows-x64.exe
+            asset_name: superagent-windows-x64.exe
+          - os: macos-13
+            artifact_name: superagent-macos-x64
+            asset_name: superagent-macos-x64
+          - os: macos-latest
+            artifact_name: superagent-macos-arm64
+            asset_name: superagent-macos-arm64
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies and PyInstaller
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyinstaller
+          pip install -e .
+
+      - name: Build with PyInstaller
+        run: |
+          pyinstaller --onefile --name ${{ matrix.artifact_name }} --clean superagent/main.py
+
+      - name: Upload Release Asset
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/${{ matrix.artifact_name }}

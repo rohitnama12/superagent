@@ -1,0 +1,15 @@
+openai
+rich
+python-dotenv
+chromadb
+langchain
+langchain-text-splitters
+langchain-huggingface
+watchdog
+sentence-transformers
+duckduckgo-search
+tavily-python
+pymupdf
+pdfplumber
+easyocr
+python-docx

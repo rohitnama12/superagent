@@ -1,0 +1,37 @@
+# Environments
+.venv/
+env/
+__pycache__/
+*.pyc
+
+# SuperAgent specific
+.chroma_db/
+superagent/models/
+models/
+*.gguf
+*.pth
+*.bin
+
+# OS generated files
+.DS_Store
+
+# User configs
+.superagent.env
+.env
+.env.example
+
+# Build and Distribution
+build/
+dist/
+*.egg-info/
+*.spec
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+
+# Logs and Temp
+*.log
+tmp/
+temp/
