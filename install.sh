@@ -40,9 +40,12 @@ elif [ "$OS" = "Darwin" ]; then
         echo -e "${RED}[!] Unsupported macOS architecture: $ARCH${NC}"
         exit 1
     fi
+# --- ADDED WINDOWS / MINGW / MSYS SUPPORT ---
+elif [[ "$OS" =~ MINGW* ]] || [[ "$OS" =~ MSYS* ]] || [[ "$OS" =~ CYGWIN* ]]; then
+    ASSET_NAME="superagent-windows-x64.exe"
+    BINARY_NAME="superagent.exe"
 else
     echo -e "${RED}[!] Unsupported Operating System: $OS${NC}"
-    echo -e "${YELLOW}Please visit the releases page to download the Windows binary manually.${NC}"
     exit 1
 fi
 
