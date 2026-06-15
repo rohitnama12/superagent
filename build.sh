@@ -11,9 +11,12 @@ echo "Building SuperAgent executable: $OUTPUT_NAME"
 
 # PyInstaller ignores .env and .chroma_db by default unless explicitly added via --add-data.
 # This ensures a clean, isolated binary.
-pyinstaller --onefile \
+pyinstaller --onedir \
             --name "$OUTPUT_NAME" \
             --clean \
             superagent/main.py
 
-echo "Build complete! Binary is located in the dist/ directory."
+echo "Zipping dist/$OUTPUT_NAME directory for distribution..."
+(cd dist && zip -q -r "../$OUTPUT_NAME.zip" "$OUTPUT_NAME")
+
+echo "Build complete! Binary is located in the dist/ directory. Archive created: ${OUTPUT_NAME}.zip"

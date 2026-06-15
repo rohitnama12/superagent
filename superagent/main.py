@@ -1,6 +1,7 @@
 import os
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 import sys
+import multiprocessing
 import re
 import requests
 import json
@@ -14,6 +15,7 @@ from rich.markdown import Markdown
 from rich import box
 import time
 from datetime import datetime
+import traceback
 
 from superagent.cli_ui import console, AGENT_COLOR, show_welcome_banner, get_user_input, show_spinner, print_system_msg, print_agent_response, print_plan, print_error, live_tool_execution_panel, print_execution_timeline, print_workspace_activity, print_session_footer
 from superagent.metrics import SessionMetrics, TaskMetrics
@@ -35,6 +37,7 @@ print("API Keys Loaded Successfully")
 api_key = os.environ.get("OPENROUTER_API_KEY")
 if not api_key:
     print_error("❌ Error: OPENROUTER_API_KEY is missing!\nPlease follow setup steps to configure .env.")
+    input("\nPress Enter to exit...")
     sys.exit(1)
 
 DEFAULT_MODEL = "openrouter/owl-alpha"
@@ -727,4 +730,5 @@ def main():
         sys.exit(0)
 
 if __name__ == "__main__":
+    multiprocessing.freeze_support()
     main()
