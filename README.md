@@ -1,6 +1,3 @@
-Here is a professional, production-grade **`README.md`** tailored specifically for your project. It captures your surgical OCR logic, hybrid parsing pipeline, and cross-platform binary installer—making your GitHub repository look like a high-tier developer tool while keeping your source code protected.
-
----
 
 # SuperAgent 🤖⚡
 
