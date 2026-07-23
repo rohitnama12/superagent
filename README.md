@@ -111,8 +111,11 @@ poetry run pyinstaller --onefile superagent/cli.py --name superagent
 
 ```
 
+5. **Run it into any terminal by typing:**
+```bash
+superagent
 
-
+```
 ---
 
 ## 🛠️ System Architecture
